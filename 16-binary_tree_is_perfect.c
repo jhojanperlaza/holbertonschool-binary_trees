@@ -10,14 +10,20 @@
 int binary_tree_is_perfect(const binary_tree_t *tree)
 {
 	int nodes = 0;
+	int height_left = 0;
+	int height_right = 0;
 
 	if (tree == NULL)
 		return (0);
 
 	nodes = height_recursion(tree);
+	height_left = binary_tree_height (tree->left);
+	height_right = binary_tree_height (tree->right);
 
-	if (nodes % 2 == 0)
-		return (0);
+	if (nodes % 2 != 0 && height_left == height_right)
+	{
+		return (1);
+	}
 
-	return (1);
+	return (0);
 }
