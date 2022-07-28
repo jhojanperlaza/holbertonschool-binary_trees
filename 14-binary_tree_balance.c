@@ -1,22 +1,5 @@
 #include "binary_trees.h"
-/**
- * binary_tree_leaves - counts the leaves in a binary tree
- * @tree: is a pointer to the root node of the tree
- *
- * Return: leaves in a binary tree
- */
-
-size_t binary_tree_leaves(const binary_tree_t *tree)
-{
-	if (tree == NULL)
-		return (0);
-	if (tree->left == NULL && tree->right == NULL)
-		return (1);
-
-	return (binary_tree_leaves(tree->left) + binary_tree_leaves(tree->right));
-}
-
-
+#include "9-binary_tree_height.c"
 /**
  * binary_tree_balance - measures the balance factor of a binary tree
  * @tree: is a pointer to measure the balance factor
@@ -26,14 +9,13 @@ size_t binary_tree_leaves(const binary_tree_t *tree)
 
 int binary_tree_balance(const binary_tree_t *tree)
 {
-	size_t n_left = 0;
-	size_t n_right = 0;
+	int n_left = 0, n_right = 0;
 
-	if (tree == NULL || (tree->left == NULL && tree->right == NULL))
+	if (tree == NULL)
 		return (0);
 
-	n_left =  binary_tree_leaves(tree->left);
-	n_right = binary_tree_leaves(tree->right);
+	n_left =  height_recursion(tree->left);
+	n_right = height_recursion(tree->right);
 
 	return (n_left - n_right);
 }
